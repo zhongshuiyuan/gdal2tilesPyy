@@ -953,8 +953,9 @@ public class GDAL2Tiles {
         heightResolution = (envelope.getMinY() - envelope.getMaxY()) / this.in_ds.getHeight();
         //mercator(11440253.586413905, 0.2985821410518959, 0.0, 2877395.4927671393, 0.0, -0.2985821410519452)
         //84(102.76954650878781, 2.5533771416895517e-06, 0.0, 25.013439812256067, 0.0, -2.553377141690922e-06)
-
-        return new double[]{envelope.getMinX(), widthResolution, 0.0, envelope.getMinY(), 0.0, heightResolution};
+        
+        //原作者此处参数错误，导致行列号偏差
+        return new double[]{envelope.getMinX(), widthResolution, 0.0, envelope.getMaxY(), 0.0, heightResolution};
     }
 
     private BoundingBox getBoundBox() {
